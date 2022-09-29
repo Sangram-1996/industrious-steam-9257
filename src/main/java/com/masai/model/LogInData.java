@@ -19,7 +19,7 @@ public class LogInData {
 	private String password;
 	
 	@NotNull(message="userType shouldn't be empty")
-private String usertype;
+	private String usertype;
 
 	public Integer getUserId() {
 		return userId;

@@ -40,7 +40,7 @@ public class SignUpData {
 	
 
 	@NotNull(message="userType shouldn't be empty")
-private String usertype;
+	private String usertype;
 
 	@Email
 	@NotNull
