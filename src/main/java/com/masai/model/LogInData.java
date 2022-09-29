@@ -13,10 +13,13 @@ public class LogInData {
 	@Id
 	@NotNull
 	private Integer userId;
-	
+	@NotNull(message="username shouldn't be empty")
 	private String userName;
-	
+	@NotNull(message="password shouldn't be empty")
 	private String password;
+	
+	@NotNull(message="usertype shouldn't be empty")
+	private String usertype;
 
 	public Integer getUserId() {
 		return userId;

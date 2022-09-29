@@ -37,6 +37,9 @@ public class SignUpData {
 	@NotNull
 	@Pattern(regexp="[0-9]{10}", message = "Mobile number must have 10 digits")
 	private String mobileNo;
+	
+	@NotNull(message="usertype shouldn't be empty")
+	private String usertype;
 
 	@Email
 	@NotNull
