@@ -2,6 +2,8 @@ package com.masai.controller;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,7 @@ public class LoginController {
 	private LogInService loginService;
 	
 	@PostMapping("/login")
-	public String loginHandler(@RequestBody LogInData loginData) throws LogInException {
+	public String loginHandler( @Valid @RequestBody LogInData loginData) throws LogInException {
 		return loginService.logInAccount(loginData);
 	}
 	

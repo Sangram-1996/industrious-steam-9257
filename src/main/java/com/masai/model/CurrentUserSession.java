@@ -18,10 +18,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CurrentUserSession {
-	
-	
-
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -95,7 +91,11 @@ public class CurrentUserSession {
 		this.localDateTime = localDateTime;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "CurrentUserSession [id=" + id + ", userId=" + userId + ", uuid=" + uuid + ", localDateTime="
+				+ localDateTime + "]";
+	}
 	
 	
 	

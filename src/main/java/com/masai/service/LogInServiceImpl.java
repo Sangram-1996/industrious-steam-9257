@@ -61,7 +61,7 @@ Optional<SignUpData> opt = signUpDAO.findById(loginData.getUserId());
 			CurrentUserSession currentUserSession = new CurrentUserSession(newSignUp.getUserId(),key,LocalDateTime.now());
 			currentUserSessionDAO.save(currentUserSession);
 			loginDataDAO.save(loginData);
-			
+			System.out.println(currentUserSession.toString());
 			return currentUserSession.toString();
 			
 		}

@@ -25,6 +25,7 @@ public class SignUpServiceImpl implements SignUpService {
 	public SignUpData createNewSignUp(SignUpData newSignUp) throws LogInException  {
 		
 		Optional<SignUpData> opt = signUpDAO.findByUserName(newSignUp.getUserName());
+		System.out.println(newSignUp.getUserName());
 		if(opt.isPresent())
 		{
 			throw new LogInException("User Already Exist!");
