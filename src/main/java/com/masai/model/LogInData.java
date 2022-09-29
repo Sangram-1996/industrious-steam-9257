@@ -18,8 +18,8 @@ public class LogInData {
 	@NotNull(message="password shouldn't be empty")
 	private String password;
 	
-	@NotNull(message="usertype shouldn't be empty")
-	private String usertype;
+	@NotNull(message="userType shouldn't be empty")
+private String usertype;
 
 	public Integer getUserId() {
 		return userId;
@@ -45,6 +45,15 @@ public class LogInData {
 		this.password = password;
 	}
 
+	public String getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
+
+	
 
 	
 

@@ -38,8 +38,9 @@ public class SignUpData {
 	@Pattern(regexp="[0-9]{10}", message = "Mobile number must have 10 digits")
 	private String mobileNo;
 	
-	@NotNull(message="usertype shouldn't be empty")
-	private String usertype;
+
+	@NotNull(message="userType shouldn't be empty")
+private String usertype;
 
 	@Email
 	@NotNull
@@ -83,6 +84,14 @@ public class SignUpData {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
 
 	
