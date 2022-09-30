@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.exception.CustomerException;
 import com.masai.exception.LogInException;
 
 import com.masai.model.SignUpData;
@@ -62,18 +63,18 @@ public class SignUpServiceImpl implements SignUpService {
 	}
 
 	@Override
-	public List<SignUpData> showallcustomers() throws LogInException {
+	public List<SignUpData> showallcustomers() throws CustomerException {
 		// TODO Auto-generated method stub
 		List<SignUpData> customers=signUpDAO.findAll();
 		if(customers.size()==0) {
-			throw new LogInException("no customer available");
+			throw new CustomerException("no customer available");
 		}
 		return customers; 
 		
 	}
 
 	@Override
-	public SignUpData deletecustomer(Integer userId) throws LogInException {
+	public SignUpData deletecustomer(Integer userId) throws CustomerException {
 		// TODO Auto-generated method stub
 		
 		Optional<SignUpData> opt= signUpDAO.findById(userId);
@@ -84,7 +85,7 @@ public class SignUpServiceImpl implements SignUpService {
 			return existcustomer;
 		}
 		else
-			throw new LogInException("no customer found");
+			throw new CustomerException("no customer found");
 		
 		
 	}

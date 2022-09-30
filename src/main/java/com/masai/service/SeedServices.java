@@ -1,8 +1,8 @@
-package com.masai.Service;
+package com.masai.service;
 
 import java.util.List;
 
-import com.masai.Exception.SeedException;
+import com.masai.exception.SeedException;
 import com.masai.model.Seed;
 
 public interface SeedServices {

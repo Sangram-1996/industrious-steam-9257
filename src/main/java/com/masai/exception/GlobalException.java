@@ -25,6 +25,60 @@ public class GlobalException {
 		ed.setDetails(req.getDescription(false));
 		return new ResponseEntity<ErrorDetails>(ed,HttpStatus.BAD_REQUEST);
 	}
+	@ExceptionHandler(PlantException.class)
+	public ResponseEntity<ErrorDetails> plantExceptionHandler(PlantException se,WebRequest req){
+		
+		ErrorDetails err = new ErrorDetails();
+		
+		
+		err.setTimestamp(LocalDateTime.now());
+      
+		err.setMessage(se.getMessage());
+		
+		err.setDetails(req.getDescription(false));
+		
+		
+		
+		return new ResponseEntity<ErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	
+	@ExceptionHandler(SeedException.class)
+	public ResponseEntity<ErrorDetails> seedsExceptionHandler(SeedException se,WebRequest req){
+		
+		ErrorDetails err = new ErrorDetails();
+		
+		
+		err.setTimestamp(LocalDateTime.now());
+      
+		err.setMessage(se.getMessage());
+		
+		err.setDetails(req.getDescription(false));
+		
+		
+		
+		return new ResponseEntity<ErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<ErrorDetails> customerExceptionHandler(CustomerException ce,WebRequest req){
+		
+		ErrorDetails err = new ErrorDetails();
+		
+		
+		err.setTimestamp(LocalDateTime.now());
+      
+		err.setMessage(ce.getMessage());
+		
+		err.setDetails(req.getDescription(false));
+		
+		
+		
+		return new ResponseEntity<ErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	
 	
 	
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.exception.CustomerException;
 import com.masai.exception.LogInException;
 import com.masai.model.SignUpData;
 import com.masai.service.SignUpService;
@@ -25,7 +26,7 @@ public class AdminController {
 	
 	
    @GetMapping("/allcustomers")
-	public ResponseEntity<List<SignUpData>>  showallcustomers() throws LogInException{
+	public ResponseEntity<List<SignUpData>>  showallcustomers() throws CustomerException{
 		
 	   
 	 
@@ -35,7 +36,7 @@ public class AdminController {
 	   
 	
 	@DeleteMapping("/{id}")
-public ResponseEntity<SignUpData>  deletecustomer(@PathVariable Integer id) throws LogInException{
+public ResponseEntity<SignUpData>  deletecustomer(@PathVariable Integer id) throws CustomerException{
 
 	SignUpData customers = signupservice.deletecustomer(id);
 	return new ResponseEntity<SignUpData>(customers, HttpStatus.OK);

@@ -1,4 +1,4 @@
-package com.masai.Service;
+package com.masai.service;
 
 
 
@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.masai.Exception.PlantException;
-import com.masai.Repository.PlantDao;
+import com.masai.exception.PlantException;
+import com.masai.repository.PlantDao;
 import com.masai.model.Plant;
 
 @Service

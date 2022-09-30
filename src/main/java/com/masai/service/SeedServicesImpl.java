@@ -1,4 +1,4 @@
-package com.masai.Service;
+package com.masai.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.masai.Exception.SeedException;
-import com.masai.Repository.SeedDao;
+import com.masai.exception.SeedException;
+import com.masai.repository.SeedDao;
 import com.masai.model.Seed;
 
 @Service

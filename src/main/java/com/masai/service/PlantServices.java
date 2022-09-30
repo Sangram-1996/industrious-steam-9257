@@ -1,9 +1,9 @@
-package com.masai.Service;
+package com.masai.service;
 
 import java.util.List;
 
 
-import com.masai.Exception.PlantException;
+import com.masai.exception.PlantException;
 import com.masai.model.Plant;
 
 
