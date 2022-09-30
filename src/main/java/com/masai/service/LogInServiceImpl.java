@@ -16,8 +16,6 @@ import com.masai.repository.CurrentUserSessionDao;
 import com.masai.repository.LoginDataDao;
 import com.masai.repository.SignUpDao;
 
-
-
 @Service
 public class LogInServiceImpl implements LogInService {
 
@@ -38,7 +36,7 @@ public class LogInServiceImpl implements LogInService {
 	@Override
 	public String logInAccount(LogInData loginData) throws LogInException  {
 		
-Optional<SignUpData> opt = signUpDAO.findById(loginData.getUserId());
+		Optional<SignUpData> opt = signUpDAO.findById(loginData.getUserId());
 		
 		if(!opt.isPresent())
 		{
