@@ -1,14 +1,17 @@
 package com.masai.service;
 
+import java.util.List;
 import java.util.Optional;
 
-import javax.security.auth.login.LoginException;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.LogInException;
+
 import com.masai.model.SignUpData;
+
 import com.masai.repository.SignUpDao;
 
 @Service
@@ -21,17 +24,22 @@ public class SignUpServiceImpl implements SignUpService {
 	@Autowired
 	private CurrentUserSessionService getCurrentLoginUserSession;
 	
+	
+	
 	@Override
 	public SignUpData createNewSignUp(SignUpData newSignUp) throws LogInException  {
+		System.out.println(newSignUp);
 		
 		Optional<SignUpData> opt = signUpDAO.findByUserName(newSignUp.getUserName());
-		System.out.println(newSignUp.getUserName());
+//		System.out.println(newSignUp.getUserName());
 		if(opt.isPresent())
 		{
 			throw new LogInException("User Already Exist!");
 		}
 		
+		
 		return signUpDAO.save(newSignUp);
+		
 	}
 
 	@Override
@@ -51,6 +59,34 @@ public class SignUpServiceImpl implements SignUpService {
 			}
 		else
 			throw new LogInException("Can't change UserId!!");
+	}
+
+	@Override
+	public List<SignUpData> showallcustomers() throws LogInException {
+		// TODO Auto-generated method stub
+		List<SignUpData> customers=signUpDAO.findAll();
+		if(customers.size()==0) {
+			throw new LogInException("no customer available");
+		}
+		return customers; 
+		
+	}
+
+	@Override
+	public SignUpData deletecustomer(Integer userId) throws LogInException {
+		// TODO Auto-generated method stub
+		
+		Optional<SignUpData> opt= signUpDAO.findById(userId);
+		
+		if(opt.isPresent()) {
+			SignUpData existcustomer = opt.get();
+			signUpDAO.delete(existcustomer);
+			return existcustomer;
+		}
+		else
+			throw new LogInException("no customer found");
+		
+		
 	}
 
 }

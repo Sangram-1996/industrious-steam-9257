@@ -10,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@AllArgsConstructor
+
 @NoArgsConstructor
+@Data
 @ToString
 public class CurrentUserSession {
 
@@ -31,72 +33,12 @@ public class CurrentUserSession {
 	
 	private LocalDateTime localDateTime;
 
-	public CurrentUserSession() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
 	public CurrentUserSession(Integer userId, String uuid, LocalDateTime localDateTime) {
 		super();
 		this.userId = userId;
 		this.uuid = uuid;
 		this.localDateTime = localDateTime;
 	}
-
-
-
-	public Integer getId() {
-		return id;
-	}
-
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-
-
-	public String getUuid() {
-		return uuid;
-	}
-
-
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-
-
-
-	public LocalDateTime getLocalDateTime() {
-		return localDateTime;
-	}
-
-
-
-	public void setLocalDateTime(LocalDateTime localDateTime) {
-		this.localDateTime = localDateTime;
-	}
-	
-	@Override
-	public String toString() {
-		return "CurrentUserSession [id=" + id + ", userId=" + userId + ", uuid=" + uuid + ", localDateTime="
-				+ localDateTime + "]";
-	}
-	
 	
 	
 
