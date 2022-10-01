@@ -52,8 +52,8 @@ public class PlantServicesImpl implements PlantServices {
 		
 		if(opt.isPresent())
 		{
-			
-			return plant;
+			Plant pl=dao.save(plant);
+			return pl;
 		}
 	
 	
@@ -76,9 +76,10 @@ public class PlantServicesImpl implements PlantServices {
 		if(opt.isPresent())
 		{
 			
-			dao.delete(plant);
+				dao.delete(opt.get());
+				return plant;
 			
-			return plant;
+			 
 		}
 	
 	

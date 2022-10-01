@@ -27,45 +27,12 @@ public class SeedController {
 	
 	//------------------------------------------------------------------------------------------------------------------------------	
 
-		@PostMapping("/seeds")
-		public ResponseEntity<Seed> addSeedHandler(@RequestBody Seed seed) throws SeedException{
-			
-			 Seed s= this.seedServices.addSeed(seed);
-			
-			return new ResponseEntity<Seed>(s,HttpStatus.OK);
-			
-			
-		}
 		
-	//-------------------------------------------------------------------------------------------------------
-		
-		
-		@PutMapping("/seeds")
-		public ResponseEntity<Seed> updateSeedHandler(@RequestBody Seed seed) throws SeedException{
-			
-			Seed p= this.seedServices.updateSeed(seed);
-			
-			return new ResponseEntity<Seed>(p,HttpStatus.OK);
-			
-			
-		}
-		
-	//-------------------------------------------------------------------------------------------------------------------
-		
-		@DeleteMapping("/seeds")
-		public ResponseEntity<Seed> deleteSeedHandler(@RequestBody Seed seed) throws SeedException{
-			
-			Seed s= this.seedServices.deleteSeed(seed);
-			
-			return new ResponseEntity<Seed>(s,HttpStatus.OK);
-			
-			
-		}
 		
 		
 	//--------------------------------------------------------------------------------------------------------------------	
 		
-		@GetMapping("/seeds")
+		@GetMapping("/showseeds")
 		public ResponseEntity<List<Seed>> getAllSeedsHandler() throws SeedException{
 			
 			 List<Seed> seeds= this.seedServices.getAllSeeds();
@@ -77,7 +44,7 @@ public class SeedController {
 
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
 		
-		@GetMapping("/seeds/{pid}")
+		@GetMapping("/showseed/{pid}")
 		public ResponseEntity<Seed> getSeedByIdHandler(@PathVariable("pid") Integer id) throws SeedException{
 			
 			
@@ -90,8 +57,8 @@ public class SeedController {
 		
 	//-------------------------------------------------------------------------------------------------------------------------------------------	
 		
-		@GetMapping("/getseeds/{nam}")
-		public ResponseEntity<List<Seed>> getSeedByNameHandler(@PathVariable("nam") String Name) throws SeedException{
+		@GetMapping("/getseeds/{name}")
+		public ResponseEntity<List<Seed>> getSeedByNameHandler(@PathVariable("name") String Name) throws SeedException{
 			
 			
 			List<Seed> seed= this.seedServices.getSeedBycommonName(Name);
@@ -103,11 +70,11 @@ public class SeedController {
 	//--------------------------------------------------------------------------------------------------------------------	
 		
 
-		@GetMapping("/seedsList/{list}")
-		public ResponseEntity<List<Seed>> getPlantBytypeOfSeedHandler(@PathVariable("list") String CName) throws SeedException{
+		@GetMapping("/showseedsList/{type}")
+		public ResponseEntity<List<Seed>> getPlantBytypeOfSeedHandler(@PathVariable("type") String type) throws SeedException{
 			
 			
-			List<Seed> seeds= this.seedServices.getseedByTypeOfSeed(CName);
+			List<Seed> seeds= this.seedServices.getseedByTypeOfSeed(type);
 			
 			return new ResponseEntity<List<Seed>>(seeds,HttpStatus.OK);
 			

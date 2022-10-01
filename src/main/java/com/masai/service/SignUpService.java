@@ -17,5 +17,8 @@ public SignUpData createNewSignUp(SignUpData signUp) throws LogInException;
 	public List<SignUpData> showallcustomers()throws CustomerException;
 	
 	public SignUpData deletecustomer(Integer userId)throws CustomerException;
+	
+	
+	
 
 }

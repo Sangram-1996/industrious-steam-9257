@@ -9,15 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.masai.exception.OrderException;
 import com.masai.model.Orders;
+import com.masai.model.SignUpData;
 import com.masai.service.OrderService;
 
 @RestController
@@ -26,33 +31,30 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+
 	
-	// Adding order
-	
-	@PostMapping("/add")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Orders> addOrder(@Valid @RequestBody Orders order){
-		Orders od=orderService.addOrder(order);
-		URI location= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(od.getOrderId()).toUri(); 
-		return ResponseEntity.created(location).body(od);
+	@PostMapping("/addorder/{id}")
+	public ResponseEntity<Orders> addOrder(@Valid @RequestBody Orders order,@PathVariable("id") Integer planterid) throws OrderException{
+		Orders od=orderService.addOrder(order,planterid);
+		
+		return new ResponseEntity<Orders>(od,HttpStatus.CREATED);
 		
 	}
 	
 	//Updating Order
-	@PostMapping("/update")
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Orders>updateOrder(@RequestBody Orders order){
+	@PutMapping("/updateorder")
+	public ResponseEntity<Orders>updateOrder(@RequestBody Orders order) throws OrderException{
 		Orders od=orderService.updateOrder(order);
-		URI location= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(od.getOrderId()).toUri();
-		return ResponseEntity.created(location).body(od);
+		return new ResponseEntity<Orders>(od,HttpStatus.OK);
+		
 	}
 	
 	//Deleting Order
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/deleteorder/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<String>deleteOrder(@RequestBody Orders order){
-		Orders od=orderService.deleteOrder(order.getOrderId());
+	public ResponseEntity<String>deleteOrder(@Valid @PathVariable("id") Integer orderid) throws OrderException{
+		Orders od=orderService.deleteOrder(orderid);
 		if(od!=null) {
 			return new ResponseEntity<String>("Deleted Succesfully",HttpStatus.OK);
 		}else {
@@ -60,20 +62,25 @@ public class OrderController {
 		}
 	}
 	
-	//	View All Orders
-	public List<Orders>viewAllOrders(){
-		return orderService.viewAllOrders();
+	
+	@GetMapping("/showorder/{id}")
+	public ResponseEntity<List<Orders>> viewordersbyuserid(@PathVariable("id")Integer userid) throws OrderException{
+		List<Orders> orders= orderService.viewordersbyuserid(userid);
 		
+		return new ResponseEntity<List<Orders>>(orders,HttpStatus.OK);
 	}
 	
-	//	View Order By ID
-	
-	public ResponseEntity<Orders>viewOrder(@PathVariable ("orderId")int orderId){
-		Orders od=orderService.viewOrder(orderId);
-		URI location= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(od.getOrderId()).toUri();
+	@GetMapping("/showcustomer/{id}")
+	public ResponseEntity<SignUpData> viewcustomer(@PathVariable("id")Integer orderid)throws OrderException{
 		
-		return ResponseEntity.created(location).body(od);
-		
+		SignUpData customer=orderService.viewcustomer(orderid);
+		return new ResponseEntity<SignUpData>(customer,HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
+	
 	
 }

@@ -19,4 +19,5 @@ public interface PlanterDao extends JpaRepository<Planter, Integer> {
 	@Query("select p from Planter p where p.planterCost between ?1 and ?2")
 	List<Planter> findAllByPlanterCostRange(Integer minCost, Integer maxCost);
 	
+	
 }

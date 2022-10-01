@@ -54,6 +54,16 @@
     <artifactId>spring-boot-starter-validation</artifactId>
     <version>2.7.4</version>
 </dependency>
+
+
+
+
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-boot-starter</artifactId>
+    <version>3.0.0</version>
+</dependency>
 		
 		
 		

@@ -25,47 +25,12 @@ public class PlantController {
 
 	@Autowired
 	private PlantServices plantServices;
-//------------------------------------------------------------------------------------------------------------------------------	
 
-	@PostMapping("/plants")
-	public ResponseEntity<Plant> addPlantHandler(@RequestBody Plant plant) throws PlantException{
-		
-		Plant p= plantServices.addPlant(plant);
-		
-		return new ResponseEntity<Plant>(p,HttpStatus.OK);
-		
-		
-	}
-	
-//-------------------------------------------------------------------------------------------------------
-	
-	
-	@PutMapping("/plants")
-	public ResponseEntity<Plant> updatePlantHandler(@RequestBody Plant plant) throws PlantException{
-		
-		Plant p= plantServices.updatePlant(plant);
-		
-		return new ResponseEntity<Plant>(p,HttpStatus.OK);
-		
-		
-	}
-	
-//-------------------------------------------------------------------------------------------------------------------
-	
-	@DeleteMapping("/plants")
-	public ResponseEntity<Plant> deletePlantHandler(@RequestBody Plant plant) throws PlantException{
-		
-		Plant p= plantServices.deletePlant(plant);
-		
-		return new ResponseEntity<Plant>(p,HttpStatus.OK);
-		
-		
-	}
 	
 	
 //--------------------------------------------------------------------------------------------------------------------	
 	
-	@GetMapping("/plants")
+	@GetMapping("/showplants")
 	public ResponseEntity<List<Plant>> getAllPlantsHandler() throws PlantException{
 		
 		 List<Plant> plants= plantServices.getAllPlants();
@@ -77,7 +42,7 @@ public class PlantController {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 	
-	@GetMapping("/plants/{pid}")
+	@GetMapping("/showplant/{pid}")
 	public ResponseEntity<Plant> getPlantByIdHandler(@PathVariable("pid") Integer id) throws PlantException{
 		
 		
@@ -88,10 +53,9 @@ public class PlantController {
 	}
 	
 	
-//-------------------------------------------------------------------------------------------------------------------------------------------	
 	
-	@GetMapping("/getplant/{nam}")
-	public ResponseEntity<List<Plant>> getPlantByNameHandler(@PathVariable("nam") String Name) throws PlantException{
+	@GetMapping("/showplants/{name}")
+	public ResponseEntity<List<Plant>> getPlantByNameHandler(@PathVariable("name") String Name) throws PlantException{
 		
 		
 		List<Plant> plant= plantServices.getPlantBycommonName(Name);
@@ -100,14 +64,13 @@ public class PlantController {
 		
 	}
 	
-//--------------------------------------------------------------------------------------------------------------------	
 	
 
-	@GetMapping("/plantsList/{list}")
-	public ResponseEntity<List<Plant>> getPlantBytypeOfPlantHandler(@PathVariable("list") String CName) throws PlantException{
+	@GetMapping("/showplantsList/{type}")
+	public ResponseEntity<List<Plant>> getPlantBytypeOfPlantHandler(@PathVariable("type") String type) throws PlantException{
 		
 		
-		List<Plant> plant= plantServices.getplantByTypeOfPlant(CName);
+		List<Plant> plant= plantServices.getplantByTypeOfPlant(type);
 		
 		return new ResponseEntity<List<Plant>>(plant,HttpStatus.OK);
 		
