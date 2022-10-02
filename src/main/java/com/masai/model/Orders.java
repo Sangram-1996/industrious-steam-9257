@@ -33,13 +33,13 @@ public class Orders {
 	private Integer orderId;
 	private LocalDate localDate;
 	
-//	@NotNull(message="Transaction Mode Can't be null")
+	@NotNull(message="Transaction Mode Can't be null")
 	private String TransactionMode;
 	
-	@Min(value=1,message="Quantity greater than 1")
+	@Min(value=1,message="Quantity greater than 0")
 	private Integer quantity;
 	
-//	@Min(value = 1, message = "Cost should be greater than 1")
+	@Min(value = 1, message = "Cost should be greater than 1")
 	private Integer totalCost;
 	
 	@OneToMany(cascade = CascadeType.ALL)

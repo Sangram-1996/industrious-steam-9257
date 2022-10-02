@@ -1,23 +1,26 @@
 package com.masai.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.OrderException;
-import com.masai.model.CurrentUserSession;
+import com.masai.model.OrderDTO;
+import com.masai.model.OrderDTO2;
 import com.masai.model.Orders;
 import com.masai.model.Plant;
 import com.masai.model.Planter;
 import com.masai.model.Seed;
 import com.masai.model.SignUpData;
 import com.masai.repository.OrderRepository;
+import com.masai.repository.PlantDao;
 import com.masai.repository.PlanterDao;
+import com.masai.repository.SeedDao;
 import com.masai.repository.SignUpDao;
 
 @Service
@@ -29,25 +32,68 @@ public class OrderServiceImpl implements OrderService {
     PlanterDao planterdao;
 	@Autowired
 	private SignUpDao signupdao;
-	//	Adding Order
+	@Autowired
+	private PlantDao plantdao;
+	@Autowired
+	private SeedDao seeddao;
+	//	Addingee Order
 	
 	@Override
-	public Orders addOrder(Orders order,Integer planterid) throws OrderException {
-		
-		
-		Optional<Planter> p=planterdao.findById(planterid);
-		if(!p.isPresent()) {
+	public OrderDTO2 addOrder(OrderDTO order) throws OrderException {
+		Orders neworder= new Orders();
+		neworder.setLocalDate(LocalDate.now());
+		neworder.setQuantity(1);
+		neworder.setTransactionMode(order.getTransactionMode());
+		neworder.setUserid(order.getUserid());
+		Integer totalcost=0;
+		if(order.getPlanterId()!=null) {
+		Optional<Planter> planter=planterdao.findById(order.getPlanterId());
+		if(!planter.isPresent()) {
 			throw new OrderException("No planter found with given id");
+		}
+		List<Planter> planterlist=new ArrayList<>();
+		planterlist.add(planter.get());
+		neworder.setPlanters(planterlist);
+		totalcost+=planter.get().getPlanterCost();
+		
 		}
 		
 		
-		order.getPlanters().add(p.get());
-		Integer totalcost=p.get().getPlanterCost()*order.getQuantity();
-		order.setTotalCost(totalcost);
-		order.setLocalDate(LocalDate.now());
-		
-		return repository.save(order);
+		if(order.getPlantId()!=null) {
+			Optional<Plant> plant=plantdao.findById(order.getPlantId());
+			if(!plant.isPresent()) {
+				throw new OrderException("No plant found with given id");
+			}
+			List<Plant> plantlist=new ArrayList<>();
+			plantlist.add(plant.get());
+			neworder.setPlants(plantlist);
+			totalcost+=plant.get().getPlantsCost();
 			
+			}
+		if(order.getSeedId()!=null) {
+			Optional<Seed> seed=seeddao.findById(order.getSeedId());
+			if(!seed.isPresent()) {
+				throw new OrderException("No seed found with given id");
+			}
+			List<Seed> seedlist=new ArrayList<>();
+			seedlist.add(seed.get());
+			neworder.setSeeds(seedlist);
+			totalcost+=seed.get().getSeedsCost();
+			
+			}
+		
+		neworder.setTotalCost(totalcost);
+		
+		Orders od= repository.save(neworder);
+		
+		OrderDTO2 od2=new OrderDTO2();
+		
+		od2.setOrderId(od.getOrderId());
+		od2.setTotalcost(od.getTotalCost());
+		od2.setTransactionMode(od.getTransactionMode());
+		od2.setLocaldate(od.getLocalDate());
+		od2.setQuantity(1);
+		return od2;
 		
 	}
 

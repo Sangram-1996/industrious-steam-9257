@@ -1,6 +1,6 @@
 package com.masai.controller;
 
-import java.net.URI;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.masai.exception.OrderException;
+import com.masai.model.OrderDTO;
+import com.masai.model.OrderDTO2;
 import com.masai.model.Orders;
 import com.masai.model.SignUpData;
 import com.masai.service.OrderService;
@@ -33,11 +33,11 @@ public class OrderController {
 	private OrderService orderService;
 
 	
-	@PostMapping("/addorder/{id}")
-	public ResponseEntity<Orders> addOrder(@Valid @RequestBody Orders order,@PathVariable("id") Integer planterid) throws OrderException{
-		Orders od=orderService.addOrder(order,planterid);
+	@PostMapping("/addorder")
+	public ResponseEntity<OrderDTO2> addOrder(@Valid @RequestBody OrderDTO order) throws OrderException{
+		OrderDTO2 od=orderService.addOrder(order);
 		
-		return new ResponseEntity<Orders>(od,HttpStatus.CREATED);
+		return new ResponseEntity<OrderDTO2>(od,HttpStatus.CREATED);
 		
 	}
 	
