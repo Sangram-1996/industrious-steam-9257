@@ -1,4 +1,4 @@
-# REST API for Bus Reservation System Portal.
+# REST API for Plant Nursery Management Portal.
 - We have developed this REST API for a Plant Nursery Management system Application. This API performs all the fundamental CRUD operations of any Plant Nursery Application platform with user validation at every step.
 - This project is developed by team of 5 Back-end Developers during project week in Masai School.
 ## Tech Stack
