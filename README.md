@@ -15,7 +15,6 @@
 - Planters Module
 - Seeds Module
 - Reservation Module
-- Feedback Module
 ## Features
 - User and Admin authentication & validation with session uuid.
 ### Admin Features:
