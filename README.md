@@ -18,7 +18,7 @@
 - User and Admin authentication & validation with session uuid.
 ### Admin Features:
 * Administrator Role of the entire application
-* Only  admins can add/update/delete route and plants, planters, seeds from main database
+* Only  admins can add/update/delete plants, planters, seeds from main database
 * Admin can access the details of different users and orders.
 ### User Features:
 * Registering themselves with application, and logging in to get the valid session token
