@@ -28,7 +28,7 @@
 - @Sangram Keshari Sahu
 - @Jai Phookan
 - @Prashant Bharate 
-- @Swapnil Nagare
+- @Swapnil Nawgire
 - @ Mohammad Ashique Usmani
 ## Installation & Run
 - Before running the API server, you should update the database config inside the application.properties file.
